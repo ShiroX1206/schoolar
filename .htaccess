@@ -1,0 +1,55 @@
+# SCHOOlar — Apache lockdown (XAMPP + Docker httpd)
+# Browser UI lives under public/ (all frontend URLs are document-relative).
+# This file only ADDS protections on top of the existing layout.
+
+DirectoryIndex public/index.html
+
+RewriteEngine On
+
+# Landing: http://localhost/SCHOOlar/ -> the UI.
+RewriteRule ^$ public/ [R=302,L]
+
+# Legacy flat-layout bookmarks (pre-cleanup URLs) -> public/ clean tree.
+RewriteRule ^index\.html$ public/index.html [R=302,L]
+RewriteRule ^login\.html$ public/login.html [R=302,L]
+RewriteRule ^register\.html$ public/register.html [R=302,L]
+RewriteRule ^css/(.*)$ public/css/$1 [R=302,L]
+RewriteRule ^javascript/(.*)$ public/js/$1 [R=302,L]
+RewriteRule ^images/(.*)$ public/images/$1 [R=302,L]
+RewriteRule ^icons/(.*)$ public/icons/$1 [R=302,L]
+RewriteRule ^User/(.*)\.html$ public/user/$1.php [R=302,L]
+RewriteRule ^User/(.*)$ public/user/$1 [R=302,L]
+RewriteRule ^Admin/admin-login\.html$ public/admin/admin-login.html [R=302,L]
+RewriteRule ^Admin/(.*)\.html$ public/admin/$1.php [R=302,L]
+RewriteRule ^Admin/(.*)$ public/admin/$1 [R=302,L]
+
+# --- Block sensitive paths (403 Forbidden) ---
+# api/config/* holds DB credentials (database.php) + session/guard includes.
+RewriteRule ^api/config/ - [F,L]
+
+# Quarantined legacy code — never serve it.
+RewriteRule ^_old_backend_unused/ - [F,L]
+
+# Never serve raw SQL dumps or env secrets if they land in web root.
+RewriteRule \.sql$ - [F,L]
+RewriteRule ^\.env$ - [F,L]
+<FilesMatch "^\.env(\..*)?$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.sql$">
+  Require all denied
+</FilesMatch>
+
+# Defense-in-depth: also deny by path even when mod_rewrite is off.
+<IfModule mod_authz_core.c>
+  <FilesMatch "^\.htaccess$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+# --- Security headers (only if mod_headers is available) ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

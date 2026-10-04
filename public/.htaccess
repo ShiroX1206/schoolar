@@ -1,0 +1,15 @@
+# public/ — force the guarded copies (adapted from User/.htaccess + Admin/.htaccess).
+# user/*.html -> user/*.php and admin/*.html -> admin/*.php so the server-side
+# session guard (api/config/guard.php) is authoritative. javascript/auth-check.js
+# alone is bypassable, so the .php + guard.php copy must win.
+# Real static pages are EXCLUDED by scoping rules to user/ and admin/ only:
+# index.html, login.html, register.html, admin/admin-login.html are served as-is.
+
+RewriteEngine On
+
+# user/: every *.html request maps to its guarded *.php twin.
+RewriteRule ^user/(.*)\.html$ /user/$1.php [R=302,L]
+
+# admin/: same, except the public login page.
+RewriteCond %{REQUEST_URI} !admin-login\.html$
+RewriteRule ^admin/(.*)\.html$ /admin/$1.php [R=302,L]

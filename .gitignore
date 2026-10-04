@@ -1,0 +1,13 @@
+# Secrets — never commit real credentials (template is .env.example)
+.env
+.env.local
+
+# OS / editor junk
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+*.log

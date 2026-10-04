@@ -1,0 +1,5 @@
+_old_backend_unused/
+.git/
+.gitignore
+node_modules/
+*.log
