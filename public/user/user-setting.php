@@ -19,7 +19,7 @@
   <body>
     <div class="main-content">
       <a href="user-dashboard.php" id="back-btn">
-        <img src="../icons/icons8-back-30.png" alt="" />
+        <img src="../ui-icons/icons8-back-30.png" alt="" />
       </a>
 
       <div class="profile-card">
@@ -34,21 +34,21 @@
         <div class="profile-menu">
           <a href="user-profile.php" class="menu-item">
             <span class="icon"
-              ><img src="../icons/icons8-profile-30.png" alt=""
+              ><img src="../ui-icons/icons8-profile-30.png" alt=""
             /></span>
             <span class="label">Personal Details</span>
             <span class="chevron">›</span>
           </a>
           <a href="#" class="menu-item" id="help-support-link">
             <span class="icon"
-              ><img src="../icons/icons8-help-30.png" alt=""
+              ><img src="../ui-icons/icons8-help-30.png" alt=""
             /></span>
             <span class="label">Help &amp; Support</span>
             <span class="chevron">›</span>
           </a>
           <a href="../index.html" class="menu-item logout-link">
             <span class="icon"
-              ><img src="../icons/icons8-logout-30.png" alt=""
+              ><img src="../ui-icons/icons8-logout-30.png" alt=""
             /></span>
             <span class="label">Logout</span>
             <span class="chevron">›</span>
@@ -59,19 +59,19 @@
 
     <nav class="mobile-nav">
       <a href="user-dashboard.php"
-        ><img src="../icons/icons8-home-30.png" alt="" />
+        ><img src="../ui-icons/icons8-home-30.png" alt="" />
       </a>
       <a href="user-search.php"
-        ><img src="../icons/icons8-search-30.png" alt="" />
+        ><img src="../ui-icons/icons8-search-30.png" alt="" />
       </a>
       <a href="user-nearby.php"
-        ><img src="../icons/icons8-location-30.png" alt="" />
+        ><img src="../ui-icons/icons8-location-30.png" alt="" />
       </a>
       <a href="user-saved.php"
-        ><img src="../icons/icons8-saved-30.png" alt="" />
+        ><img src="../ui-icons/icons8-saved-30.png" alt="" />
       </a>
       <a href="user-setting.php" class="active"
-        ><img src="../icons/icons8-setting-30.png" alt="" />
+        ><img src="../ui-icons/icons8-setting-30.png" alt="" />
       </a>
     </nav>
 

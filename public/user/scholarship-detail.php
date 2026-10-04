@@ -25,11 +25,11 @@
           class="back-btn"
           aria-label="Back"
         >
-          <img src="../icons/icons8-back-30.png" alt="" />
+          <img src="../ui-icons/icons8-back-30.png" alt="" />
         </a>
 
         <button class="save-btn" id="saveBtn" aria-label="Save scholarship">
-          <img src="../icons/icons8-color-save-30.png" alt="" />
+          <img src="../ui-icons/icons8-saved-30.png" alt="" />
         </button>
 
         <div class="hero-mark" id="orgMark">S</div>

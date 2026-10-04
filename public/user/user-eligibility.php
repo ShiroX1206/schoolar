@@ -25,7 +25,7 @@
           class="back-btn"
           aria-label="Back"
         >
-          <img src="../icons/icons8-back-30.png" alt="" />
+          <img src="../ui-icons/icons8-back-30.png" alt="" />
         </a>
         <h1>Eligibility Checker</h1>
       </div>

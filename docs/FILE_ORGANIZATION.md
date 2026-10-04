@@ -13,7 +13,7 @@ SCHOOlar/
 ├── public/                                      # WEB ROOT — the only publicly served tree
 │   ├── index.html / login.html / register.html   # public pages
 │   ├── css/ / js/                                # static styles + scripts (public)
-│   ├── images/ / icons/                          # static assets (public)
+│   ├── images/ / ui-icons/                          # static assets (public)
 │   ├── user/                                     # protected pages (user role)
 │   │   └── *.php  (each starts with require_page_auth("user") via api/config/guard.php)
 │   └── admin/                                    # admin pages
@@ -71,7 +71,7 @@ SCHOOlar/
 
 - **Public:** `public/index.html`, `public/login.html`, `public/register.html`,
   `public/admin/admin-login.html`, `public/css/*`, `public/js/*`,
-  `public/images/*`, `public/icons/*`, auth entry-point APIs
+  `public/images/*`, `public/ui-icons/*`, auth entry-point APIs
   (`api/auth/*`), public scholarship reads (`GET api/scholarships/*`,
   `GET api/reference.php`).
 - **Protected:** `public/user/*.php` (role `user`), `public/admin/*.php`

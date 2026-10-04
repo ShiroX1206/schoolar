@@ -18,14 +18,14 @@
       <h2>SCHOOlar</h2>
       <nav>
         <a href="admin-dashboard.php" class="active"
-          ><img src="../icons/icons8-home-30.png" alt="" /> Dashboard</a
+          ><img src="../ui-icons/icons8-home-30.png" alt="" /> Dashboard</a
         >
         <a href="admin-scholarships.php"
-          ><img src="../icons/icons8-scholarship-30.png" alt="" /> Manage
+          ><img src="../ui-icons/icons8-scholarship-30.png" alt="" /> Manage
           Scholarships</a
         >
         <a href="../index.html" class="logout-link"
-          ><img src="../icons/icons8-logout-30.png" alt="" /> Logout</a
+          ><img src="../ui-icons/icons8-logout-30.png" alt="" /> Logout</a
         >
       </nav>
     </aside>
@@ -70,13 +70,13 @@
 
     <nav class="mobile-nav">
       <a href="admin-dashboard.php" class="active"
-        ><img src="../icons/icons8-home-30.png" alt="" />
+        ><img src="../ui-icons/icons8-home-30.png" alt="" />
       </a>
       <a href="admin-scholarships.php"
-        ><img src="../icons/icons8-scholarship-30.png" alt="" />
+        ><img src="../ui-icons/icons8-scholarship-30.png" alt="" />
       </a>
       <a href="../index.html" class="logout-link"
-        ><img src="../icons/icons8-logout-30.png" alt="" />
+        ><img src="../ui-icons/icons8-logout-30.png" alt="" />
       </a>
     </nav>
     <script src="../js/app-config.js"></script>

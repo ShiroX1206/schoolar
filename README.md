@@ -219,7 +219,7 @@ Then mount the certs into the `web` service, add a `:443` vhost in `docker/apach
 schoolar/
 ├── public/                 # 🌐 ALL browser UI (Apache DocumentRoot in Docker)
 │   ├── index.html login.html register.html
-│   ├── css/  js/  images/  icons/
+│   ├── css/  js/  images/  ui-icons/
 │   ├── user/               # 9 guarded .php pages (role: user)
 │   ├── admin/              # admin-login.html (public) + 2 guarded .php
 │   └── .htaccess           # *.html → *.php so the guarded copy always wins

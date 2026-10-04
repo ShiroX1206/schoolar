@@ -49,7 +49,7 @@ guarded copy always wins and the unguarded static copy is unreachable.
 
 - `public/index.html`, `public/login.html`, `public/register.html`,
   `public/admin/admin-login.html`
-- static assets: `public/css/*`, `public/js/*`, `public/images/*`, `public/icons/*`
+- static assets: `public/css/*`, `public/js/*`, `public/images/*`, `public/ui-icons/*`
 - entry-point APIs: `api/auth/login.php`, `api/auth/register.php`,
   `api/auth/logout.php`, `api/auth/me.php` (returns session state), public
   scholarship reads (`GET api/scholarships/*.php`, `GET api/reference.php`)

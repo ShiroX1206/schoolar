@@ -22,23 +22,23 @@
       <h2>SCHOOlar</h2>
       <nav>
         <a href="user-dashboard.php" class="active"
-          ><img src="../icons/icons8-home-30.png" alt="" /> Home</a
+          ><img src="../ui-icons/icons8-home-30.png" alt="" /> Home</a
         >
         <a href="user-search.php"
-          ><img src="../icons/icons8-search-30.png" alt="" /> Find
+          ><img src="../ui-icons/icons8-search-30.png" alt="" /> Find
           Scholarships</a
         >
         <a href="user-nearby.php">
-          <img src="../icons/icons8-location-30.png" alt="" />Nearby</a
+          <img src="../ui-icons/icons8-location-30.png" alt="" />Nearby</a
         >
         <a href="user-saved.php"
-          ><img src="../icons/icons8-saved-30.png" alt="" /> Saved</a
+          ><img src="../ui-icons/icons8-saved-30.png" alt="" /> Saved</a
         >
         <a href="user-profile.php"
-          ><img src="../icons/icons8-profile-30.png" alt="" /> Profile</a
+          ><img src="../ui-icons/icons8-profile-30.png" alt="" /> Profile</a
         >
         <a href="../index.html" class="logout-link"
-          ><img src="../icons/icons8-logout-30.png" alt="" /> Logout</a
+          ><img src="../ui-icons/icons8-logout-30.png" alt="" /> Logout</a
         >
       </nav>
     </aside>
@@ -52,7 +52,7 @@
           </div>
           <a href="user-notif.php">
             <img
-              src="../icons/icons8-notification-30.png"
+              src="../ui-icons/icons8-notification-30.png"
               alt="notif-icon"
             />
           </a>
@@ -78,19 +78,19 @@
     <!-- Mobile Bottom Navigation -->
     <nav class="mobile-nav">
       <a href="user-dashboard.php" class="active"
-        ><img src="../icons/icons8-home-30.png" alt="" />
+        ><img src="../ui-icons/icons8-home-30.png" alt="" />
       </a>
       <a href="user-search.php"
-        ><img src="../icons/icons8-search-30.png" alt="" />
+        ><img src="../ui-icons/icons8-search-30.png" alt="" />
       </a>
       <a href="user-nearby.php"
-        ><img src="../icons/icons8-location-30.png" alt="" />
+        ><img src="../ui-icons/icons8-location-30.png" alt="" />
       </a>
       <a href="user-saved.php"
-        ><img src="../icons/icons8-saved-30.png" alt="" />
+        ><img src="../ui-icons/icons8-saved-30.png" alt="" />
       </a>
       <a href="user-setting.php"
-        ><img src="../icons/icons8-setting-30.png" alt="" />
+        ><img src="../ui-icons/icons8-setting-30.png" alt="" />
       </a>
     </nav>
 
