@@ -128,6 +128,91 @@ docker compose down -v            # stop + DELETE database (fresh reseed next bo
 
 ---
 
+## ☁️ Deploy to AWS (EC2 + Docker)
+
+Same containers you run locally — just on a cloud VM. No XAMPP on the server.
+
+### 1. Launch the EC2 instance
+
+1. AWS Console → **EC2 → Launch instance**.
+2. Settings that matter:
+   - **AMI:** Amazon Linux 2023 (free-tier eligible).
+   - **Type:** `t3.micro` (free tier) — fine for class demos.
+   - **Key pair:** create/download a `.pem` (you need it for SSH).
+   - **Security group:** allow `22` (SSH, ideally **your IP only**), `80` (HTTP, anywhere), `443` (HTTPS, anywhere). **Do NOT open `8081`** — phpMyAdmin stays reachable only via SSH tunnel (see step 5).
+   - **Storage:** default 8 GB gp3 is enough.
+3. (Recommended) Allocate an **Elastic IP** and associate it, so the address survives reboots.
+
+### 2. Install Docker on the server
+
+```bash
+ssh -i your-key.pem ec2-user@<EC2-PUBLIC-IP>
+
+sudo dnf update -y
+sudo dnf install -y docker git
+sudo systemctl enable --now docker
+sudo usermod -aG docker ec2-user
+# log out and back in so the docker group applies, then:
+docker --version
+docker compose version
+```
+
+### 3. Ship the app and set production secrets
+
+```bash
+git clone https://github.com/ShiroX1206/schoolar.git
+cd schoolar
+cp .env.example .env
+nano .env
+```
+
+Set **strong unique values** in `.env` (do this *before* the first boot — MySQL creates its users from these on init):
+
+```env
+DB_USER=schoolar
+DB_PASS=<long-random-password>
+DB_ROOT_PASS=<different-long-random-password>
+APP_PORT=80
+```
+
+Generate passwords with: `openssl rand -base64 24`
+
+### 4. Boot it
+
+```bash
+docker compose up --build -d
+docker compose ps          # all three Healthy/Up
+curl -s -o /dev/null -w "%{http_code}\n" http://localhost/
+```
+
+Open `http://<EC2-PUBLIC-IP>/` in your browser. First boot seeds schema + demo data (~30–60s).
+
+> 🔑 Log in and **immediately change the demo passwords** (or delete the demo accounts) — `admin@schoolar.local` / `admin123` and `student@schoolar.local` / `User123!` are public in this repo's seed data.
+
+### 5. Operate it
+
+```bash
+docker compose logs -f web        # app logs
+docker compose pull && docker compose up --build -d   # redeploy after git pull
+```
+
+- **phpMyAdmin without exposing it:** `ssh -i your-key.pem -L 8081:localhost:8081 ec2-user@<IP>`, then open http://localhost:8081 on your laptop.
+- **Backups:** the DB lives in the `db_data` volume (EBS). Snapshot the volume in EC2 before defenses, or `docker compose exec db mysqldump -u root -p schoolar_db > backup.sql`.
+- **Updating:** `git pull` + rebuild as above. Never run `down -v` in prod (it deletes the database).
+
+### 6. HTTPS (optional, recommended)
+
+Point a domain (Route 53 or any registrar) at the Elastic IP, then on the server:
+
+```bash
+sudo dnf install -y certbot
+sudo certbot certonly --webroot -w ~/schoolar/public -d your-domain.com
+```
+
+Then mount the certs into the `web` service, add a `:443` vhost in `docker/apache/schoolar.conf` (`SSLEngine on` + the two `SSL*File` lines), enable the `ssl` module in the `Dockerfile` (`a2enmod rewrite headers ssl`), and rebuild. Renewals: `certbot renew` (certs auto-refresh inside the mounted volume).
+
+---
+
 ## 🗂️ Project Structure
 
 ```

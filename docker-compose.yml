@@ -2,27 +2,27 @@ services:
   web:
     build: .
     ports:
-      - "8080:80"
+      - "${APP_PORT:-8080}:80"
     volumes:
       - ./:/var/www/html
     depends_on:
       db:
         condition: service_healthy
     environment:
-      DB_HOST: db
-      DB_NAME: schoolar_db
-      DB_USER: schoolar
-      DB_PASS: schoolarpass
+      DB_HOST: ${DB_HOST:-db}
+      DB_NAME: ${DB_NAME:-schoolar_db}
+      DB_USER: ${DB_USER:-schoolar}
+      DB_PASS: ${DB_PASS:-schoolarpass}
     restart: unless-stopped
 
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
-      MYSQL_DATABASE: schoolar_db
-      MYSQL_USER: schoolar
-      MYSQL_PASSWORD: schoolarpass
-      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ${DB_NAME:-schoolar_db}
+      MYSQL_USER: ${DB_USER:-schoolar}
+      MYSQL_PASSWORD: ${DB_PASS:-schoolarpass}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:-rootpass}
     volumes:
       - db_data:/var/lib/mysql
       # Seed scripts run once on first init (alphabetical order: schema first, then seeds).
@@ -30,7 +30,7 @@ services:
       - ./database/phase3_seed_scholarships.sql:/docker-entrypoint-initdb.d/02-phase3_seed_scholarships.sql:ro
       - ./database/phase3_fix_gwa_scale.sql:/docker-entrypoint-initdb.d/03-phase3_fix_gwa_scale.sql:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpass"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_ROOT_PASS:-rootpass}"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -42,9 +42,9 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: db
-      PMA_USER: schoolar
-      PMA_PASSWORD: schoolarpass
-      MYSQL_ROOT_PASSWORD: rootpass
+      PMA_USER: ${DB_USER:-schoolar}
+      PMA_PASSWORD: ${DB_PASS:-schoolarpass}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:-rootpass}
     depends_on:
       db:
         condition: service_healthy
